@@ -1,0 +1,13 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+	svg {
+		@apply inline-block align-middle;
+	}
+	input,
+	button {
+		@apply outline-none disabled:opacity-50;
+	}
+}
