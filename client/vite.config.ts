@@ -12,7 +12,7 @@ export default defineConfig({
 	build: {
 		assetsInlineLimit: 0,
 		emptyOutDir: true,
-		outDir: join(clientDir, './build/____')
+		outDir: join(clientDir, './build')
 	},
 	resolve: {
 		alias: [{ find: '@', replacement: join(clientDir, './src') }]
