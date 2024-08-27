@@ -1,8 +1,6 @@
 import express from 'express'
-import dotenv from 'dotenv'
 import setupVite from './utils/setupVite.js'
 
-dotenv.config({ path: '../.env' })
 const app = express()
 
 // will handle all get requests. Call it in the end
