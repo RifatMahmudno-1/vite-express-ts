@@ -18,12 +18,15 @@ export default async (app: Express) => {
 		app.get('*', (req, res) => vite.middlewares(req, res))
 	} else {
 		if (process.env.Serverless !== 'YES') {
+			// not serverless, actual server
+			// headers are needed for cache
+
 			app.use(
 				express.static(join(clientDir, './build'), {
 					cacheControl: false,
 					setHeaders(res, path, __) {
 						const bn = basename(path)
-						if (bn && bn.match(/.*-.{8}.[a-zA-Z0-9]+$/)?.[0] === bn) res.setHeader('cache-control', 'public, max-age=31536000, immutable')
+						if (bn && bn.match(/.*-.{8}\.[a-zA-Z0-9]+$/)?.[0] === bn) res.setHeader('cache-control', 'public, max-age=31536000, immutable')
 						else res.setHeader('cache-control', 'public, max-age=120, must-revalidate')
 					}
 				})
@@ -31,6 +34,9 @@ export default async (app: Express) => {
 
 			app.get('*', (_, res) => res.setHeader('cache-control', 'public, max-age=120, must-revalidate').sendFile(join(clientDir, './build/index.html')))
 		} else {
+			// serverless
+			// headers not needed here cause static files aren't served from here
+
 			app.get('*', (_, res) => res.sendFile(join(clientDir, './build/index.html')))
 		}
 	}
