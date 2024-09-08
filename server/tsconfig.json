@@ -14,5 +14,6 @@
 		"noUnusedParameters": true,
 		"noFallthroughCasesInSwitch": true
 	},
-	"exclude": ["build"]
+	"include": ["./src"],
+	"exclude": ["./build"]
 }

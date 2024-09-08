@@ -26,6 +26,6 @@
 		},
 		"types": ["vite/client"]
 	},
-	"exclude": ["build"],
+	"exclude": ["./build", "./vite.config.ts.*"],
 	"references": [{ "path": "./tsconfig.node.json" }]
 }
